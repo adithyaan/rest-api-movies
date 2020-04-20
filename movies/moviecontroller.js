@@ -1,7 +1,7 @@
 var model = require('./moviemodel');
 var jwt = require('jsonwebtoken');
 var config = require('../config/config');
-
+ 
 exports.getAllMovies = function(req,res){
     var promise = model.find({})
                         .populate('rating')
@@ -28,7 +28,7 @@ exports.addMovie = function(req,res){
 exports.verifyUser = function(){
     return( function(req,res,next){
         console.log(req.headers['authorization'])
-    jwt.verify(req.headers['authorization'],config.secret,function(err,decoded){
+        jwt.verify(req.headers['authorization'],config.secret,function(err,decoded){
         if(err){
            res.send(err)
         }
